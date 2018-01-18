@@ -1,0 +1,20 @@
+{
+  "name": "tabs",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.0",
+    "react-confirm-alert": "^1.0.8",
+    "react-d3-tree": "^1.7.0",
+    "react-dom": "^16.2.0",
+    "react-ripples": "^1.1.2",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
