@@ -21,6 +21,8 @@ import FetchApis from './Components/FetchApis';
 import TreeComponent from './Components/TreeComponent';
 import RegisterForm from './Components/RegisterForm';
 import ToDoList from './Components/ToDoList';
+import TableScreen from './Components/TableScreen';
+
 
 class App extends Component {
   constructor(props) {
@@ -261,8 +263,9 @@ const dropDownList = this.state.checkList.map((d, key) => <div key={key}><DropDo
 <FetchApis />
 
 <TreeComponent />
-<RegisterForm />*/}
-<ToDoList />
+<RegisterForm />
+<ToDoList />*/}
+<TableScreen />
 {/*Modal definition*/}
 <Modal show={this.state.showModal} onHide={this.handleClose}>
   <Modal.Header closeButton>

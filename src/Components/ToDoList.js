@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-
+import Dialog from 'material-ui/Dialog';
 import Tabs from './Tabs';
 import { confirmAlert } from 'react-confirm-alert';
 import Grids from './grids';
 import BootstrapComponents from './BootstrapComponents';
-import {Bootstrap, Grid, Row, Col,Alert,Badge,Breadcrumb,Button,ButtonGroup,ButtonToolbar,Glyphicon} from 'react-bootstrap';
+import {Bootstrap, Grid, Row, Col,Alert,Badge,Breadcrumb,ButtonGroup,ButtonToolbar,Glyphicon} from 'react-bootstrap';
 import {DropdownButton,MenuItem,Carousel,Modal,OverlayTrigger,Form,FormGroup,FormControl,Checkbox,ListGroup,ListGroupItem} from 'react-bootstrap';
 import is from 'is_js';
+import Button from 'material-ui/Button';
 
 
 class ToDoList extends Component {
@@ -16,20 +17,25 @@ constructor(props){
     toDoList:[],
     dropDownTitle:'Select',
     showModal:false,
-    keyValues:[],
     isMainChecked:false,
+    isActionSelected:false,
+  actionToBePerformed:'',
     user: {
       Title:'',
       isComplete:false,
 isChecked:false,
-actionToBePerformed:'',
+
+  backColor:"#ffffff",
     },
   }
 }
+
+
 onSelectDropDown=(select,event)=>{
 this.setState({
   dropDownTitle:select,
-  actionToBePerformed:select
+  actionToBePerformed:select,
+  isActionSelected:true,
 })
 }
 handleClose = () => {
@@ -46,27 +52,19 @@ handleTitleChange=(event)=>{
     this.setState({ user : {
       Title: event.target.value,
       isComplete: false,
-      isChecked:false
+      isChecked:false,
+      backColor:"#ffffff",
     }
   }
 );
 }
+handleRadioChange = (key,event) => {
+  let {toDoList}=this.state;
 
+toDoList[key].isChecked=!toDoList[key].isChecked
 
-handleRadioChange = (title,event) => {
-  let {toDoList,titlevalue}=this.state;
-
-toDoList[toDoList.indexOf(title)].isChecked=!toDoList[toDoList.indexOf(title)].isChecked
-if (toDoList.indexOf(title).isChecked===true) {
-
-titlevalue.push(title)
-
-  this.pushKey.bind(this,titlevalue)
+  this.setState({toDoList})
 }
-  this.setState({toDoList,titlevalue})
-}
-
-
 handleListDelete = (item,event) => {
   console.log(item);
   let { toDoList } = this.state;
@@ -81,23 +79,29 @@ PerformAction=()=>{
 
 
       if (actionToBePerformed==='Delete') {
-        console.log("toDoList.length   ",toDoList.length);
-        for (var i = 0; i < toDoList.length; i++) {
-                console.log(i,'   ',toDoList[i]);
-        if(toDoList[i].Title===true){
+        for (var i = (toDoList.length-1); i >= 0; i--) {
+
+        if(toDoList[i].isChecked===true){
 
           toDoList.splice(i,1);
 
         }
         }
-      }else {
-        for (var i = 0; i < toDoList.length; i++) {
-        if(toDoList[i].isComplete===true){
+      }else {if (actionToBePerformed==='Complete') {
 
+        for (var i = toDoList.length-1; i >=0 ; i--) {
+
+        if(toDoList[i].isChecked===true){
+                console.log('Complete   ',i);
+          toDoList[i].backColor="#c0c0c0";
+              toDoList[i].isComplete=true;
+          this.setState({
+            toDoList
+          })
 
         }
         }
-      }
+      }}
       this.setState({
         toDoList
       })
@@ -120,17 +124,32 @@ handleMainRadioChange=()=>{
 isMainChecked:!isMainChecked
     })
 }
-pushKey=(key)=>{
-  console.log(key);
-  let {keyValues}=this.state;
-  keyValues.push(key);
-  this.setState({keyValues})
+handleListComplete=(key,event)=>{
+
+  let { toDoList } = this.state;
+  toDoList[key].backColor="#c0c0c0"
+
+  this.setState({
+    toDoList
+  })
 }
 render(){
-
+  const actions = [
+       <Button raised
+         label="Cancel"
+         primary={true}
+         onClick={this.handleClose}
+       />,
+       <Button raised
+         label="Submit"
+         primary={true}
+         keyboardFocused={true}
+         onClick={this.handleClose}
+       />,
+     ];
   return(
 <div>
-  <Button bsStyle="success" onClick={()=>this.setState({showModal:true})}>Add</Button>
+  <Button raised primary={true} onClick={()=>this.setState({showModal:true})}>Add</Button>
 
     <ListGroup>
 
@@ -140,41 +159,51 @@ render(){
             <MenuItem eventKey="1" onSelect={this.onSelectDropDown.bind(this,'Delete')}>Delete</MenuItem>
             <MenuItem eventKey="2" onSelect={this.onSelectDropDown.bind(this,'Complete')}>Complete</MenuItem>
           </DropdownButton>
-          <Button style={{marginLeft:"3rem"}} onClick={this.PerformAction}>Perform Action</Button>
+        {this.state.isActionSelected &&  <Button style={{marginLeft:"3rem"}} onClick={this.PerformAction}>Perform Action</Button>}
       </div>
     }
-        {this.state.toDoList.map((items,key)=><ListGroupItem key={key} className="checkBoxListClass" disable='true'>
-        <Checkbox className="checkBoxClass" checked={items.isChecked} onChange={this.handleRadioChange.bind(this,items.Title)}>{items.Title}</Checkbox>
+        {this.state.toDoList.map((items,key)=><ListGroupItem key={key} className="checkBoxListClass" disable='true' style={{backgroundColor:items.backColor}}>
+        <Checkbox className="checkBoxClass" checked={items.isChecked} onChange={this.handleRadioChange.bind(this,key)} >{items.Title}</Checkbox>
 
         <div className="iconDiv">
-        <Glyphicon glyph="glyphicon glyphicon-ok" className="iconsClass" style={{color:"#00ff00"}}/>
+        <Glyphicon glyph="glyphicon glyphicon-ok" className="iconsClass" style={{color:"#00ff00"}} onClick={this.handleListComplete.bind(this,key)}/>
         <Glyphicon glyph="glyphicon glyphicon-remove" className="iconsClass" onClick={this.handleListDelete.bind(this,items)}/>
         </div>
         </ListGroupItem> )}
 
     </ListGroup>
     {is.empty(this.state.toDoList) && <div>No Data Found</div>}
-    <Modal show={this.state.showModal} onHide={this.handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Add new task</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <Dialog
+        title="Dialog With Actions"
+        actions={actions}
+        modal={false}
+        open={this.state.showModal}
+        onRequestClose={this.handleClose}
+      >
+{  //  <Modal show={this.state.showModal} onHide={this.handleClose}>
+//       <Modal.Header closeButton>
+//         <Modal.Title>Add new task</Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body>
+}
       <Form horizontal onSubmit={this.handleAdd}>
 
-        <Col sm={10}>
+
           <FormControl type="text" placeholder="Title" onChange={this.handleTitleChange} />
-        </Col>
+
 
 
         </Form>
-      </Modal.Body>
-      <Modal.Footer>
-      <div style={{height:'10rem'}}>
-        <Button bsStyle="success" onClick={this.handleAdd.bind(this,this.state.user)}>Add</Button>
-        <Button onClick={this.handleClose}>Close</Button>
-        </div>
-      </Modal.Footer>
-    </Modal>
+ {    //  </Modal.Body>
+//       <Modal.Footer>
+//       <div style={{height:'10rem'}}>
+//         <Button bsStyle="success" onClick={this.handleAdd.bind(this,this.state.user)}>Add</Button>
+//         <Button onClick={this.handleClose}>Close</Button>
+//         </div>
+//       </Modal.Footer>
+//     </Modal>
+}
+    </Dialog>
 </div>
   )
 }
