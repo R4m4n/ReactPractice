@@ -5,7 +5,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import Grids from './grids';
 import BootstrapComponents from './BootstrapComponents';
 import {Bootstrap, Grid, Row, Col,Alert,Badge,Breadcrumb,ButtonGroup,ButtonToolbar} from 'react-bootstrap';
-import {DropdownButton,Carousel,Modal,Form,FormGroup,FormControl,Checkbox,HelpBlock,ControlLabel} from 'react-bootstrap';
+import {DropdownButton,Carousel,Modal,Form,FormGroup,FormControl,HelpBlock,ControlLabel} from 'react-bootstrap';
 import is from 'is_js';
 import Ripples from 'react-ripples';
 import {Button, Icon} from 'react-materialize';
@@ -25,8 +25,8 @@ import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-
-
+import Checkbox from 'material-ui/Checkbox';
+import '../Style/TableScreen.css';
 
 const drawerWidth = 240;
 
@@ -123,17 +123,35 @@ height:'100%',
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(product_name, vandor, category, quantity_remaining, product_type) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, product_name, vandor, category, quantity_remaining, product_type };
 }
 
 const data = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
+  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
+
 ];
 
 class TableScreen extends Component {
@@ -148,7 +166,8 @@ state = {
  };
 
  handleDrawerOpen = () => {
-   this.setState({ open: true });
+
+   this.setState({ open: !this.state.open });
  };
 
  handleDrawerClose = () => {
@@ -176,9 +195,7 @@ render(){
       <div className={classes.drawerInner}>
         <div className={classes.drawerHeader}>
         Text
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
+
         </div>
 
       </div>
@@ -196,17 +213,7 @@ render(){
 
   return(
     <div>
-    <TextField
-            id="persistent-anchor"
-            select
-            label="Anchor"
-            value={anchor}
-            onChange={this.handleChangeAnchor}
-            margin="normal"
-          >
-            <MenuItem value="left">left</MenuItem>
-            <MenuItem value="right">right</MenuItem>
-          </TextField>
+
           <div className={classes.appFrame}>
             <AppBar
               className={classNames(classes.appBar, {
@@ -219,7 +226,7 @@ render(){
                   color="inherit"
                   aria-label="open drawer"
                   onClick={this.handleDrawerOpen}
-                  className={classNames(classes.menuButton, open && classes.hide)}
+                  className={classNames(classes.menuButton)}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -235,14 +242,29 @@ render(){
                 [classes[`contentShift-${anchor}`]]: open,
               })}
             >
+            <Table className={classes.table} style={{border:"2px solid #000000"}} >
+            <TableRow >
+                <TableCell></TableCell>
+                <TableCell style={{border:"2px solid #000000"}}>Product Name</TableCell>
+                <TableCell style={{border:"2px solid #000000"}}>Vendor</TableCell>
+                <TableCell style={{border:"2px solid #000000"}}>Category</TableCell>
+                <TableCell style={{border:"2px solid #000000"}}>Quantity Remaining</TableCell>
+                <TableCell style={{border:"2px solid #000000"}}>Product Type</TableCell>
+            </TableRow>
             {data.map(n => {
                        return (
                          <TableRow key={n.id}>
-                           <TableCell>{n.id}</TableCell>
-                             <TableCell>{n.name}</TableCell>
+                         <Checkbox checked={this.state.checkedB}  value="checkedB"  />
+                             <TableCell style={{border:"2px solid #000000"}}>{n.product_name}</TableCell>
+                             <TableCell style={{border:"2px solid #000000"}}>{n.vandor}</TableCell>
+                             <TableCell style={{border:"2px solid #000000"}}>{n.category}</TableCell>
+                             <TableCell style={{border:"2px solid #000000"}}>{n.quantity_remaining}</TableCell>
+                             <TableCell style={{border:"2px solid #000000"}}>{n.product_type}</TableCell>
+
                          </TableRow>
                        );
                      })}
+                     </Table>
             </main>
             {after}
           </div>
