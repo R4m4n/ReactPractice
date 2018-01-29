@@ -1,3 +1,75 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+
 .TableHeader{
   border: 2px solid #000000;
+}
+.InventoryHeaderContainer{
+
+  background-color: #f8f7f7;
+  height: 7rem;
+  vertical-align: middle;
+  align-items: left;
+  align-content: center;
+   border-top: 1px solid #707070;
+}
+.DropDownButton{
+
+margin-top: 1.5rem;
+  cursor: pointer;
+  width: 10%;
+  font-size: 2rem;
+color: #707070;
+background-color: #f8f7f7;
+float: left;
+
+
+}
+
+.InventoryMenuStyle{
+background-color: #333333;
+}
+
+.InventoryHeaderMain{
+  vertical-align: middle;
+}
+
+.HeaderTextField{
+  width: 20rem;
+  font-size: 4rem;
+  align-self: left;
+  align-items: left;
+  border: 1px solid #070707;
+}
+
+.DrawerHead{
+  height: 6.3rem;
+  background-color: #eeeeef;
+  width: 24rem;
+  padding: 0;
+}
+
+.BlazeSpan{
+  font-weight: 700;
+  font-size: 1.9rem;
+}
+.WarehouseSpan{
+  font-weight: 700;
+  color: #ffa700;
+  font-size: 1.9rem;
+}
+.DrawerBody{
+  height: 100%;
+  background-color: #ffa700;
+  margin-top: 28px;
+}
+
+.ListItemsStyle{
+  flex-wrap: wrap;
+  align-content: left;
+  color: #fff;
+}
+.ListItemsTextStyle{
+  color: #fff;
 }

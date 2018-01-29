@@ -27,13 +27,17 @@ import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Checkbox from 'material-ui/Checkbox';
 import '../Style/TableScreen.css';
+import InventoryHeader from './TableScreen/InventoryHeader';
+import DrawerLayout from './TableScreen/DrawerLayout';
+
+
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     width: '100%',
-height:'100%',
+    height:'100%',
     marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
@@ -45,7 +49,8 @@ height:'100%',
     height: '100%',
   },
   appBar: {
-
+    color:"#ffa700",
+backgroundColor:"#f7f7f7",
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -72,7 +77,7 @@ height:'100%',
     display: 'none',
   },
   drawerPaper: {
-
+backgroundColor:'#ffa700',
     height: '100%',
     width: drawerWidth,
   },
@@ -80,7 +85,7 @@ height:'100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+
     ...theme.mixins.toolbar,
   },
   content: {
@@ -96,7 +101,7 @@ height:'100%',
     marginTop: 56,
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
-      marginTop: 64,
+      marginTop: 130,
     },
   },
   'content-left': {
@@ -194,7 +199,7 @@ render(){
     >
       <div className={classes.drawerInner}>
         <div className={classes.drawerHeader}>
-        Text
+        <DrawerLayout />
 
         </div>
 
@@ -221,6 +226,7 @@ render(){
                 [classes[`appBarShift-${anchor}`]]: open,
               })}
             >
+
               <Toolbar disableGutters={!open}>
                 <IconButton
                   color="inherit"
@@ -231,17 +237,21 @@ render(){
                   <MenuIcon />
                 </IconButton>
                 <Typography type="title" color="inherit" noWrap>
-                  Persistent drawer
+
                 </Typography>
               </Toolbar>
+                <div className="InventoryHeaderContainer">  <InventoryHeader /> </div>
             </AppBar>
+
             {before}
+
             <main
               className={classNames(classes.content, classes[`content-${anchor}`], {
                 [classes.contentShift]: open,
                 [classes[`contentShift-${anchor}`]]: open,
               })}
             >
+
             <Table className={classes.table} style={{border:"2px solid #000000"}} >
             <TableRow >
                 <TableCell></TableCell>
