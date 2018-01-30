@@ -16,7 +16,6 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import List from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
@@ -29,7 +28,7 @@ import Checkbox from 'material-ui/Checkbox';
 import '../Style/TableScreen.css';
 import InventoryHeader from './TableScreen/InventoryHeader';
 import DrawerLayout from './TableScreen/DrawerLayout';
-
+import Menu, { MenuItem } from 'material-ui/Menu';
 
 
 const drawerWidth = 240;
@@ -45,7 +44,7 @@ const styles = theme => ({
   appFrame: {
 
     display: 'flex',
-    width: '100%',
+    width: '130%',
     height: '100%',
   },
   appBar: {
@@ -162,7 +161,9 @@ const data = [
 class TableScreen extends Component {
 constructor(props){
   super(props)
-
+  this.state = {
+     anchorEl: null,
+   };
 
 }
 state = {
@@ -184,10 +185,20 @@ state = {
      anchor: event.target.value,
    });
  };
+
+ handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+
 render(){
   const { classes, theme } = this.props;
   const { anchor, open } = this.state;
-
+const { anchorEl } = this.state;
   const drawer = (
     <Drawer
       type="persistent"
@@ -239,6 +250,24 @@ render(){
                 <Typography type="title" color="inherit" noWrap>
 
                 </Typography>
+                <div aria-owns={anchorEl ? 'simple-menu' : null}
+                   aria-haspopup="true"
+                   onClick={this.handleClick}
+                   className="DropDownButtonTop"
+                 >
+                 Location<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
+               </div>
+                    <Menu
+                      id="simple-menu"
+                      anchorEl={anchorEl}
+                      open={Boolean(anchorEl)}
+                      onClose={this.handleClose}
+                    >
+                      <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                      <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                      <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+                    </Menu>
+
               </Toolbar>
                 <div className="InventoryHeaderContainer">  <InventoryHeader /> </div>
             </AppBar>
@@ -252,24 +281,24 @@ render(){
               })}
             >
 
-            <Table className={classes.table} style={{border:"2px solid #000000"}} >
+            <Table className={classes.table}  >
             <TableRow >
                 <TableCell></TableCell>
-                <TableCell style={{border:"2px solid #000000"}}>Product Name</TableCell>
-                <TableCell style={{border:"2px solid #000000"}}>Vendor</TableCell>
-                <TableCell style={{border:"2px solid #000000"}}>Category</TableCell>
-                <TableCell style={{border:"2px solid #000000"}}>Quantity Remaining</TableCell>
-                <TableCell style={{border:"2px solid #000000"}}>Product Type</TableCell>
+                <TableCell >Product Name</TableCell>
+                <TableCell >Vendor</TableCell>
+                <TableCell>Category</TableCell>
+                <TableCell >Quantity Remaining</TableCell>
+                <TableCell >Product Type</TableCell>
             </TableRow>
             {data.map(n => {
                        return (
                          <TableRow key={n.id}>
                          <Checkbox checked={this.state.checkedB}  value="checkedB"  />
-                             <TableCell style={{border:"2px solid #000000"}}>{n.product_name}</TableCell>
-                             <TableCell style={{border:"2px solid #000000"}}>{n.vandor}</TableCell>
-                             <TableCell style={{border:"2px solid #000000"}}>{n.category}</TableCell>
-                             <TableCell style={{border:"2px solid #000000"}}>{n.quantity_remaining}</TableCell>
-                             <TableCell style={{border:"2px solid #000000"}}>{n.product_type}</TableCell>
+                             <TableCell >{n.product_name}</TableCell>
+                             <TableCell >{n.vandor}</TableCell>
+                             <TableCell >{n.category}</TableCell>
+                             <TableCell >{n.quantity_remaining}</TableCell>
+                             <TableCell >{n.product_type}</TableCell>
 
                          </TableRow>
                        );

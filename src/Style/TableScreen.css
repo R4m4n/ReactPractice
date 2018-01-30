@@ -26,6 +26,15 @@ float: left;
 
 
 }
+.DropDownButtonTop{
+
+    cursor: pointer;
+    width: 10%;
+    font-size: 2rem;
+  color: #707070;
+  background-color: #f8f7f7;
+  float: right;
+}
 
 .InventoryMenuStyle{
 background-color: #333333;
@@ -44,10 +53,11 @@ background-color: #333333;
 }
 
 .DrawerHead{
-  height: 6.3rem;
+  height: 6.4rem;
   background-color: #eeeeef;
   width: 24rem;
   padding: 0;
+  margin: 0;
 }
 
 .BlazeSpan{
@@ -55,7 +65,7 @@ background-color: #333333;
   font-size: 1.9rem;
 }
 .WarehouseSpan{
-  font-weight: 700;
+  font-weight: 500;
   color: #ffa700;
   font-size: 1.9rem;
 }
@@ -63,13 +73,39 @@ background-color: #333333;
   height: 100%;
   background-color: #ffa700;
   margin-top: 28px;
+  padding-top: 7rem;
 }
 
 .ListItemsStyle{
-  flex-wrap: wrap;
-  align-content: left;
+  flex: inherit;
+  font-size: 3rem;
   color: #fff;
 }
 .ListItemsTextStyle{
   color: #fff;
+  font-size: 3rem;
+    flex: inherit;
+
 }
+.newdivstyle1{
+    background-color:#ffa700;
+    width:14rem;
+color: #fff;
+  float: right;
+  margin-right: 2rem;
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  }
+  .newdivstyle2{
+      background-color:#ffa700;
+      width:12rem;
+      float:right;
+        margin-right: 2rem;
+      color: #fff;
+        padding: 10px;
+          font-weight: 600;
+          cursor: pointer;
+          margin-top: 10px;
+    }

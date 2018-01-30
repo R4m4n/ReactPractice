@@ -12,6 +12,27 @@ import '../../Style/TableScreen.css';
 import TextField from 'material-ui/TextField';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+
+
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    color:'#fff',
+    height: '100%',
+    backgroundColor: '#ffa700',
+    marginTop: '25px',
+    paddingTop: '7rem',
+    fontSize:'1.7rem',
+    fontWeight:'70'
+  },
+ListItemStyle:{
+  paddingLeft:'4rem'
+}
+});
 
 
 class DrawerLayout extends Component {
@@ -20,37 +41,53 @@ class DrawerLayout extends Component {
 
   }
 render(){
+  const { classes } = this.props;
   return(
     <div>
 <div className="DrawerHead" style={{padding:'0',alignItems:"center", paddingTop:'1.5rem'}}>
 <span className="BlazeSpan">BLAZE</span><span className="WarehouseSpan"> Warehouse</span>
 
-<div className="DrawerBody">
-<List className="ListItemsStyle" style={{color:"#fff"}}>
-       <ListItem button style={{color:"#fff"}}>
+</div>
+ <div  className={classes.root}>
+<List>
+       <ListItem button className={classes.ListItemStyle}>
 
-         <ListItemText primary="Inbox" className="ListItemsTextStyle"/>
+    Invoices +
        </ListItem>
-       <ListItem button>
+       <ListItem button className={classes.ListItemStyle}>
 
-         <ListItemText primary="Drafts" />
+         Purchase Orders +
        </ListItem>
-     </List>
-     <Divider />
-     <List>
-       <ListItem button>
-         <ListItemText primary="Trash" />
+
+       <ListItem button className={classes.ListItemStyle}>
+        Expenses +
        </ListItem>
-       <ListItem button component="a" href="#simple-list">
-         <ListItemText primary="Spam" />
+       <ListItem button className={classes.ListItemStyle}>
+        Fleet +
+       </ListItem>
+       <ListItem button className={classes.ListItemStyle}>
+        Contacts +
+       </ListItem>
+       <ListItem button className={classes.ListItemStyle}>
+        Inventory +
+       </ListItem>
+       <ListItem button className={classes.ListItemStyle}>
+        Reports +
+       </ListItem>
+       <ListItem button className={classes.ListItemStyle}>
+        Settings +
        </ListItem>
      </List>
 
 </div>
-</div>
+
+
     </div>
   )
 }
 }
+DrawerLayout.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-export default DrawerLayout;
+export default withStyles(styles)(DrawerLayout);

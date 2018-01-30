@@ -10,7 +10,54 @@ import {Button} from 'react-materialize';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import '../../Style/TableScreen.css';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 
+
+
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+  },
+  inputLabelFocused: {
+    color: '#ffa',
+  },
+  inputInkbar: {
+    '&:after': {
+      backgroundColor: '#fas',
+    },
+  },
+  textFieldRoot: {
+    padding: 0,
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  textFieldInput: {
+    borderRadius: 0,
+    backgroundColor: '#fff',
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    marginTop:'10px',
+
+height:'3rem',
+    width: '34rem',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  textFieldFormLabel: {
+    fontSize: 18,
+  },
+
+});
 
 
 class InventoryHeader extends Component {
@@ -31,6 +78,7 @@ class InventoryHeader extends Component {
    };
 
 render(){
+  const { classes } = this.props;
       const { anchorEl } = this.state;
   return(
 <div className="InventoryHeaderMain">
@@ -39,6 +87,7 @@ render(){
      aria-haspopup="true"
      onClick={this.handleClick}
      className="DropDownButton"
+     sty
    >
    All Inventory<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
  </div>
@@ -54,21 +103,34 @@ render(){
       </Menu>
 
       <TextField
-      className="HeaderTextField"
-      placeholder="Search"
-    style={{border:"1px solid #070707", fontSize:"4rem", minWidth:"35rem", minHeight:"4rem",alignItems:"center", marginTop:"1.5rem"}}
-        InputProps={{
-          disableUnderline: true,
+         placeholder="Search"
+         InputProps={{
+           disableUnderline: true,
+           classes: {
+             root: classes.textFieldRoot,
+             input: classes.textFieldInput,
+           },
+         }}
+         InputLabelProps={{
+           shrink: true,
+           className: classes.textFieldFormLabel,
+         }}
+       />
 
-        }}
-        InputLabelProps={{
-          shrink: true,
+      <div className="newdivstyle1">
+        New Product
+      </div>
+      <div className="newdivstyle2">
+        New Branch
+      </div>
 
-        }}
-      />
 </div>
   )
 }
 }
 
-export default InventoryHeader;
+InventoryHeader.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(InventoryHeader);
