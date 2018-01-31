@@ -4,7 +4,7 @@ import Tabs from './Components/Tabs';
 import { confirmAlert } from 'react-confirm-alert';
 import Grids from './Components/grids';
 import BootstrapComponents from './Components/BootstrapComponents';
-import ReactSlickExample from './Components/ReactSlickExample';
+// import ReactSlickExample from './Components/ReactSlickExample';
 import {Bootstrap, Grid, Row, Col,Alert,
   Badge,
   ListGroup,

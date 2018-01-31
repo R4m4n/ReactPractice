@@ -40,6 +40,9 @@ class DrawerLayout extends Component {
     super(props)
 
   }
+
+
+
 render(){
   const { classes } = this.props;
   return(
@@ -50,11 +53,11 @@ render(){
 </div>
  <div  className={classes.root}>
 <List>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Invoice')}>
 
     Invoices +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} selected="true">
 
          Purchase Orders +
        </ListItem>

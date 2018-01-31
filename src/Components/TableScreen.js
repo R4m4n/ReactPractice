@@ -29,6 +29,14 @@ import '../Style/TableScreen.css';
 import InventoryHeader from './TableScreen/InventoryHeader';
 import DrawerLayout from './TableScreen/DrawerLayout';
 import Menu, { MenuItem } from 'material-ui/Menu';
+import InventoryMain from './TableScreen/InventoryMain';
+import InvoiceMain from './TableScreen/InvoiceMain';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 
 
 const drawerWidth = 240;
@@ -126,37 +134,8 @@ backgroundColor:'#ffa700',
 
 });
 
-let id = 0;
-function createData(product_name, vandor, category, quantity_remaining, product_type) {
-  id += 1;
-  return { id, product_name, vandor, category, quantity_remaining, product_type };
-}
 
-const data = [
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
-  createData('Blue Dream', 'John Farmers', 'Sativa', '140g,5 1/8 units', 'Recreational'),
-  createData('Alaskan Ice', 'Sean Daikin', 'Sativa', '245g', 'Medicinal'),
 
-];
 
 class TableScreen extends Component {
 constructor(props){
@@ -195,6 +174,11 @@ state = {
   };
 
 
+  onListItemClick=(clickedOn,event)=>{
+    console.log(clickedOn);
+
+  }
+
 render(){
   const { classes, theme } = this.props;
   const { anchor, open } = this.state;
@@ -210,7 +194,7 @@ const { anchorEl } = this.state;
     >
       <div className={classes.drawerInner}>
         <div className={classes.drawerHeader}>
-        <DrawerLayout />
+        <DrawerLayout clickAction={this.onListItemClick}/>
 
         </div>
 
@@ -254,6 +238,7 @@ const { anchorEl } = this.state;
                    aria-haspopup="true"
                    onClick={this.handleClick}
                    className="DropDownButtonTop"
+                   style={{float:'right'}}
                  >
                  Location<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
                </div>
@@ -267,7 +252,8 @@ const { anchorEl } = this.state;
                       <MenuItem onClick={this.handleClose}>My account</MenuItem>
                       <MenuItem onClick={this.handleClose}>Logout</MenuItem>
                     </Menu>
-
+                    <div style={{backgroundColor:"#ffa700",height:"30px",width:"30px",borderRadius:"50%"}}>
+                    </div>
               </Toolbar>
                 <div className="InventoryHeaderContainer">  <InventoryHeader /> </div>
             </AppBar>
@@ -280,30 +266,16 @@ const { anchorEl } = this.state;
                 [classes[`contentShift-${anchor}`]]: open,
               })}
             >
+            <Router>
+    <div>
 
-            <Table className={classes.table}  >
-            <TableRow >
-                <TableCell></TableCell>
-                <TableCell >Product Name</TableCell>
-                <TableCell >Vendor</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell >Quantity Remaining</TableCell>
-                <TableCell >Product Type</TableCell>
-            </TableRow>
-            {data.map(n => {
-                       return (
-                         <TableRow key={n.id}>
-                         <Checkbox checked={this.state.checkedB}  value="checkedB"  />
-                             <TableCell >{n.product_name}</TableCell>
-                             <TableCell >{n.vandor}</TableCell>
-                             <TableCell >{n.category}</TableCell>
-                             <TableCell >{n.quantity_remaining}</TableCell>
-                             <TableCell >{n.product_type}</TableCell>
+      <Route exact path="/" component={InventoryMain}/>
+      <Route path="/InvoiceMain" component={InvoiceMain}/>
 
-                         </TableRow>
-                       );
-                     })}
-                     </Table>
+    </div>
+  </Router>
+<InventoryMain />
+
             </main>
             {after}
           </div>
