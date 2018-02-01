@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Validate from "react-validate-form";
 import { confirmAlert } from 'react-confirm-alert';
 import {Bootstrap, Grid, Row, Col,Alert,Badge,Breadcrumb,ButtonGroup,ButtonToolbar} from 'react-bootstrap';
-import {DropdownButton,Carousel,Modal,Form,FormGroup,FormControl,Checkbox,HelpBlock,ControlLabel} from 'react-bootstrap';
+import {DropdownButton,Carousel,Modal,Form,FormGroup,FormControl,HelpBlock,ControlLabel} from 'react-bootstrap';
 import Icon from 'material-ui/Icon';
 import is from 'is_js';
 import Ripples from 'react-ripples';
@@ -15,7 +15,7 @@ import Divider from 'material-ui/Divider';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-
+import Checkbox from 'material-ui/Checkbox';
 
 const styles = theme => ({
   root: {

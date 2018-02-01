@@ -31,6 +31,12 @@ import DrawerLayout from './TableScreen/DrawerLayout';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import InventoryMain from './TableScreen/InventoryMain';
 import InvoiceMain from './TableScreen/InvoiceMain';
+import Contacts from './TableScreen/Contacts';
+import Expenses from './TableScreen/Expenses';
+import Fleet from './TableScreen/Fleet';
+import PurchaseOrders from './TableScreen/PurchaseOrders';
+import Reports from './TableScreen/Reports';
+import Settings from './TableScreen/Settings';
 import {
   BrowserRouter as Router,
   Route,
@@ -57,7 +63,7 @@ const styles = theme => ({
   },
   appBar: {
     color:"#ffa700",
-backgroundColor:"#f7f7f7",
+    backgroundColor:"#f7f7f7",
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -109,6 +115,7 @@ backgroundColor:'#ffa700',
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
       marginTop: 130,
+    
     },
   },
   'content-left': {
@@ -131,6 +138,47 @@ backgroundColor:'#ffa700',
   },
 
 
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+  },
+  inputLabelFocused: {
+    color: '#ffa',
+  },
+  inputInkbar: {
+    '&:after': {
+      backgroundColor: '#fas',
+    },
+  },
+  textFieldRoot: {
+    padding: 0,
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  textFieldInput: {
+    borderRadius: 0,
+    backgroundColor: '#fff',
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    marginTop:'10px',
+
+height:'3rem',
+    width: '34rem',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  textFieldFormLabel: {
+    fontSize: 18,
+  },
+
+
 
 });
 
@@ -142,6 +190,7 @@ constructor(props){
   super(props)
   this.state = {
      anchorEl: null,
+     RouteValue:'Invoices',
    };
 
 }
@@ -176,13 +225,15 @@ state = {
 
   onListItemClick=(clickedOn,event)=>{
     console.log(clickedOn);
-
+    this.setState({
+      RouteValue:clickedOn,
+    })
   }
 
 render(){
   const { classes, theme } = this.props;
   const { anchor, open } = this.state;
-const { anchorEl } = this.state;
+  const { anchorEl } = this.state;
   const drawer = (
     <Drawer
       type="persistent"
@@ -231,9 +282,24 @@ const { anchorEl } = this.state;
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography type="title" color="inherit" noWrap>
 
-                </Typography>
+                {!(this.state.RouteValue==="Inventory")&&
+                <TextField
+                   placeholder="Search"
+                   InputProps={{
+                     disableUnderline: true,
+                     classes: {
+                       root: classes.textFieldRoot,
+                       input: classes.textFieldInput,
+                     },
+                   }}
+                   InputLabelProps={{
+                     shrink: true,
+                     className: classes.textFieldFormLabel,
+                   }}
+                 />
+                }
+
                 <div aria-owns={anchorEl ? 'simple-menu' : null}
                    aria-haspopup="true"
                    onClick={this.handleClick}
@@ -255,10 +321,13 @@ const { anchorEl } = this.state;
                     <div style={{backgroundColor:"#ffa700",height:"30px",width:"30px",borderRadius:"50%"}}>
                     </div>
               </Toolbar>
-                <div className="InventoryHeaderContainer">  <InventoryHeader /> </div>
+              {this.state.RouteValue==="Inventory" &&  <div className="InventoryHeaderContainer">  <InventoryHeader /> </div>}
             </AppBar>
 
             {before}
+
+
+
 
             <main
               className={classNames(classes.content, classes[`content-${anchor}`], {
@@ -266,15 +335,32 @@ const { anchorEl } = this.state;
                 [classes[`contentShift-${anchor}`]]: open,
               })}
             >
-            <Router>
-    <div>
-
-      <Route exact path="/" component={InventoryMain}/>
-      <Route path="/InvoiceMain" component={InvoiceMain}/>
-
-    </div>
-  </Router>
-<InventoryMain />
+            <Typography type="title" color="inherit" noWrap>
+              {(this.state.RouteValue==="Invoices") &&
+                <InvoiceMain />
+              }
+              {(this.state.RouteValue==="Inventory") &&
+                <InventoryMain />
+              }
+              {(this.state.RouteValue==="Contacts") &&
+                <Contacts />
+              }
+              {(this.state.RouteValue==="Expenses") &&
+                <Expenses />
+              }
+              {(this.state.RouteValue==="Fleet") &&
+                <Fleet />
+              }
+              {(this.state.RouteValue==="PurchaseOrders") &&
+                <PurchaseOrders />
+              }
+              {(this.state.RouteValue==="Reports") &&
+                <Reports />
+              }
+              {(this.state.RouteValue==="Settings") &&
+                <Settings />
+              }
+        </Typography>
 
             </main>
             {after}

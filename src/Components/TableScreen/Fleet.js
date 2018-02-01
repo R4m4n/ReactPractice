@@ -16,7 +16,7 @@ import { withStyles } from 'material-ui/styles';
 
 
 
-class InvoiceMain extends Component {
+class Fleet extends Component {
   constructor(props){
     super(props)
 
@@ -28,18 +28,11 @@ render(){
 
   return(
 <div className="InventoryHeaderMain">
-<div className="ListDiv">
-
-
-</div>
-
-
-<div className="DetailsDiv">
-</div>
+Fleet
 </div>
   )
 }
 }
 
 
-export default InvoiceMain;
+export default Fleet;

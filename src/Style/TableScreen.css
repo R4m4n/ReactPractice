@@ -33,7 +33,7 @@ float: left;
     font-size: 2rem;
   color: #707070;
   background-color: #f8f7f7;
-  margin-left:  80%;
+  margin-left:  64%;
 }
 
 .InventoryMenuStyle{
@@ -116,4 +116,16 @@ color: #fff;
           font-weight: 500;
           cursor: pointer;
           margin-top: 20px;
+    }
+
+
+    .ListDiv{
+      width: 25%;
+      background-color: #00aadd;
+      height: 100%;
+    }
+    .DetailsDiv{
+      width: 75%;
+      height: 100%;
+      background-color: #aab455;
     }

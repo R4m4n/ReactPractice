@@ -53,31 +53,31 @@ render(){
 </div>
  <div  className={classes.root}>
 <List>
-       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Invoice')}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Invoices')}>
 
     Invoices +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle} selected="true">
+       <ListItem button className={classes.ListItemStyle}  onClick={this.props.clickAction.bind(this,'PurchaseOrders')}>
 
          Purchase Orders +
        </ListItem>
 
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Expenses')}>
         Expenses +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Fleet')}>
         Fleet +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Contacts')}>
         Contacts +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Inventory')}>
         Inventory +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Reports')}>
         Reports +
        </ListItem>
-       <ListItem button className={classes.ListItemStyle}>
+       <ListItem button className={classes.ListItemStyle} onClick={this.props.clickAction.bind(this,'Settings')}>
         Settings +
        </ListItem>
      </List>
