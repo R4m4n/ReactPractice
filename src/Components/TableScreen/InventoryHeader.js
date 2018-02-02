@@ -87,7 +87,7 @@ render(){
      aria-haspopup="true"
      onClick={this.handleClick}
      className="DropDownButton"
-  
+
    >
    All Inventory<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
  </div>

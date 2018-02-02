@@ -139,6 +139,7 @@ render(){
   <div>
 
   <Table className={classes.table}  >
+   <TableHead>
   <TableRow >
       <TableCell></TableCell>
       <TableCell >Product Name</TableCell>
@@ -147,10 +148,12 @@ render(){
       <TableCell >Quantity Remaining</TableCell>
       <TableCell >Product Type</TableCell>
   </TableRow>
+   </TableHead>
+   <TableBody>
   {data.map(n => {
              return (
                <TableRow key={n.id}>
-               <Checkbox/>
+             <TableCell >   <Checkbox/> </TableCell >
                    <TableCell >{n.product_name}</TableCell>
                    <TableCell >{n.vandor}</TableCell>
                    <TableCell >{n.category}</TableCell>
@@ -160,6 +163,7 @@ render(){
                </TableRow>
              );
            })}
+            </TableBody>
            </Table>
 
   </div>

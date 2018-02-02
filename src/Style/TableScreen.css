@@ -121,11 +121,34 @@ color: #fff;
 
     .ListDiv{
       width: 25%;
-      background-color: #00aadd;
+      background-color: #f8f7f7;
       height: 100%;
+      float: left;
     }
     .DetailsDiv{
       width: 75%;
       height: 100%;
-      background-color: #aab455;
+      float: right;
+      background-color: #54b455;
     }
+
+.DropDownButtonTopInvoice{
+
+    cursor: pointer;
+    width: 26%;
+    font-size: 2rem;
+    color: #707070;
+    padding-top: 2rem;
+
+}
+
+.DetailsDivHeader{
+  width: 100%;
+  height: 8rem;
+  background-color: #ffffff;
+  border: 1px solid #b3b3b3;
+}
+.ListDivHeader{
+  width: 100%;
+  height: 8rem;
+}

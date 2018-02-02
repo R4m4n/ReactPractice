@@ -56,12 +56,13 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   appFrame: {
-
+position:'relative',
     display: 'flex',
     width: '130%',
     height: '100%',
   },
   appBar: {
+display:'block',
     color:"#ffa700",
     backgroundColor:"#f7f7f7",
     transition: theme.transitions.create(['margin', 'width'], {
@@ -102,10 +103,10 @@ backgroundColor:'#ffa700',
     ...theme.mixins.toolbar,
   },
   content: {
-    width: '100%',
-    flexGrow: 1,
+    width: '77%',
+
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
+
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -114,12 +115,12 @@ backgroundColor:'#ffa700',
     marginTop: 56,
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
-      marginTop: 130,
-    
+      marginTop: '5%',
+
     },
   },
   'content-left': {
-    marginLeft:0,
+    marginLeft:-drawerWidth,
   },
   'content-right': {
     marginRight: -drawerWidth,
@@ -164,9 +165,9 @@ backgroundColor:'#ffa700',
     backgroundColor: '#fff',
     border: '1px solid #ced4da',
     fontSize: 16,
-    marginTop:'10px',
+  
 
-height:'3rem',
+  height:'3rem',
     width: '34rem',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
@@ -191,6 +192,7 @@ constructor(props){
   this.state = {
      anchorEl: null,
      RouteValue:'Invoices',
+     margin_top:41,
    };
 
 }
@@ -228,6 +230,26 @@ state = {
     this.setState({
       RouteValue:clickedOn,
     })
+
+    switch (clickedOn) {
+      case 'Inventory':
+      this.setState({
+        margin_top:130
+      })
+        break;
+        case 'Invoices':
+        this.setState({
+          margin_top:41
+        })
+          break;
+      default:
+
+    }
+    if (clickedOn==='Inventory') {
+      this.setState({
+        margin_top:130
+      })
+    }
   }
 
 render(){
@@ -263,7 +285,7 @@ render(){
   }
 
   return(
-    <div>
+    <div className={classes.root}>
 
           <div className={classes.appFrame}>
             <AppBar
@@ -334,8 +356,9 @@ render(){
                 [classes.contentShift]: open,
                 [classes[`contentShift-${anchor}`]]: open,
               })}
+              style={{marginTop:this.state.margin_top}}
             >
-            <Typography type="title" color="inherit" noWrap>
+
               {(this.state.RouteValue==="Invoices") &&
                 <InvoiceMain />
               }
@@ -360,7 +383,7 @@ render(){
               {(this.state.RouteValue==="Settings") &&
                 <Settings />
               }
-        </Typography>
+
 
             </main>
             {after}

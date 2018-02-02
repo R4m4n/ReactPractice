@@ -14,27 +14,77 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
 
-
+const styles = theme => ({
+  appBar: {
+    color:"#ffa700",
+    backgroundColor:"#f8f7f7",
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - 64px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+});
 
 class InvoiceMain extends Component {
   constructor(props){
     super(props)
-
+    this.state = {
+       anchorEl: null,
+     };
 
   }
+  handleClick = event => {
+     this.setState({ anchorEl: event.currentTarget });
+   };
+
+   handleClose = () => {
+     this.setState({ anchorEl: null });
+   };
 
 
 render(){
-
+  const { anchorEl } = this.state;
   return(
-<div className="InventoryHeaderMain">
-<div className="ListDiv">
+      <div>
+      <div className="ListDiv">
+<div className="ListDivHeader">
+          <div aria-owns={anchorEl ? 'simple-menu' : null}
+             aria-haspopup="true"
+             onClick={this.handleClick}
+             className="DropDownButtonTopInvoice"
+
+           >
+           Location<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
+         </div>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleClose}
+              >
+                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                <MenuItem onClick={this.handleClose}>Logout</MenuItem>
+              </Menu>
+
+
+</div>
+      </div>
+
+
+<div className="DetailsDiv">
+<div className="DetailsDivHeader">
 
 
 </div>
 
-
-<div className="DetailsDiv">
 </div>
 </div>
   )
@@ -42,4 +92,9 @@ render(){
 }
 
 
-export default InvoiceMain;
+InvoiceMain.propTypes = {
+  classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles, { withTheme: true })(InvoiceMain);
