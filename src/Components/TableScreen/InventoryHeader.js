@@ -89,7 +89,7 @@ render(){
      className="DropDownButton"
 
    >
-   All Inventory<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
+   All Inventory<i class="material-icons" style={{marginTop:"2px"}}>arrow_drop_down</i>
  </div>
       <Menu
         id="simple-menu"

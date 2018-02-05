@@ -27,7 +27,7 @@ float: left;
 
 }
 .DropDownButtonTop{
-
+height: 55%;
     cursor: pointer;
     width: 10%;
     font-size: 2rem;
@@ -129,13 +129,14 @@ color: #fff;
       width: 75%;
       height: 100%;
       float: right;
-      background-color: #54b455;
+
+      border: 1px solid #b3b3b3;
     }
 
 .DropDownButtonTopInvoice{
 
     cursor: pointer;
-    width: 26%;
+    width: 40%;
     font-size: 2rem;
     color: #707070;
     padding-top: 2rem;
@@ -146,9 +147,19 @@ color: #fff;
   width: 100%;
   height: 8rem;
   background-color: #ffffff;
-  border: 1px solid #b3b3b3;
+  border-bottom: 1px solid #b3b3b3;
 }
 .ListDivHeader{
   width: 100%;
   height: 8rem;
+}
+
+.InvoiceDetailTagNumber{
+  float: left;
+  margin-top: 1.65%;
+  font-size: 2rem;
+  margin-left: 2rem;
+}
+.TabsAppBar{
+  background-color: #ffffff;
 }

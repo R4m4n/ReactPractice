@@ -1,0 +1,65 @@
+
+
+.OverViewTrackingDiv{
+  height:18rem;
+  background-color: #fbfafa;
+  padding-top: 3rem;
+  border-bottom: 1px solid #cdcccd;
+}
+.TreeDivChildren{
+  height: 3rem;
+  width:3rem;
+
+  border: 1px solid #cdcccd;
+  border-radius: 50%;
+}
+.TreeDivChildrenConnector{
+  border: 1px solid #cdcccd;
+  height: 2rem;
+  width: 0px;
+  margin-left: 1.25rem;
+}
+.OverViewDivTime{
+  float: left;
+  width: 20%;
+  height: 8rem;
+  color: #767676;
+}
+.TreeDiv{
+  width: 5rem;
+  float: left;
+}
+.OverViewDivDiscription{
+  float: left;
+  text-align: left;
+}
+.OverViewDivDiscription1{
+  text-align: left;
+  color: #767676;
+}
+.PaymentStatus{
+  background-color: #27d05e;
+  width:15%;
+  height: 5rem;
+  color: #fff;
+}
+.OverViewAddressDiv{
+  text-align: left;
+  width: 25%;
+  float: left;
+}
+.InvoiceOverviewTitle{
+  float: right;
+  text-align: right;
+  color: #585858;
+}
+
+.OverViewTotal{
+  font-size: 25px;
+  font-weight: 550;
+}
+.OverViewTable{
+  text-align: right;
+  width: 15rem;
+height: 4rem;
+}

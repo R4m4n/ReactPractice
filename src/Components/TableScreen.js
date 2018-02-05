@@ -165,7 +165,7 @@ backgroundColor:'#ffa700',
     backgroundColor: '#fff',
     border: '1px solid #ced4da',
     fontSize: 16,
-  
+
 
   height:'3rem',
     width: '34rem',
@@ -328,7 +328,7 @@ render(){
                    className="DropDownButtonTop"
                    style={{float:'right'}}
                  >
-                 Location<i class="material-icons" style={{marginTop:"2px"}}>keyboard_arrow_down</i>
+                 Location<i class="material-icons" style={{marginTop:"2px"}}>arrow_drop_down</i>
                </div>
                     <Menu
                       id="simple-menu"
